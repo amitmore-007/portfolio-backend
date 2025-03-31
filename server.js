@@ -17,10 +17,11 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: "https://amit-more-portfolio.netlify.app", // Allow only your frontend
-  methods: ["POST"],
+  origin: "https://amit-more-portfolio.netlify.app", // No trailing slash
+  methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"]
 }));
+app.options('*', cors()); // Handle preflight requests
 
 
 const transporter = nodemailer.createTransport({
